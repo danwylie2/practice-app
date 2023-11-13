@@ -6,31 +6,47 @@
   
 
     let users: User[] = [];
-    let selectedUser: User
+    let selectedUser: User = {
+        id: 0,
+        name: "",
+        username: "",
+        // email: "",
+        // address: {
+        //     street: "",
+        //     suite: "",
+        //     city: "",
+        //     zipcode: "",
+        //     geo: {
+        //         lat: "",
+        //         lng: ""
+        //     }
+        // },
+        phone: "",
+        website: "",
+        // company: {
+        //     name: "",
+        //     catchPhrase: "",
+        //     bs: ""
+        // }
+    };
 
     onMount(async () => {
         users = await getUsers();
     });
 
     
-
     async function getUsers() {
             return await fetch('https://jsonplaceholder.typicode.com/users')
                 .then(response => response.json())
                 .then(json => json)
         }
     
-
     function handleSelect(event: any) {
         
         console.log("handleSelect", event.detail.id);
         console.log(users.find(user => user.id == event.detail.id));
-        let foundUser = users.find(user => user.id == event.detail.id);
-        if (foundUser) {
-            selectedUser = foundUser;
-        } else {
-            console.log("User not found");
-        }
+        selectedUser = users.find(user => user.id == event.detail.id);
+        
     }
 </script>
   
