@@ -45,7 +45,15 @@
         
         console.log("handleSelect", event.detail.id);
         console.log(users.find(user => user.id == event.detail.id));
-        selectedUser = users.find(user => user.id == event.detail.id);
+        
+        let testSelectedUser: User | undefined;
+        testSelectedUser = users.find(user => user.id == event.detail.id);
+        if (testSelectedUser===undefined){
+            throw new TypeError("selectedUser is undefined");
+        } else {
+            selectedUser = testSelectedUser;
+        }
+            
         
     }
 </script>
